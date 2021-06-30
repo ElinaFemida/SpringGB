@@ -15,10 +15,23 @@ import java.util.List;
 public class ProductController {
     private ProductService productService;
     @GetMapping("/products")
-    public String showProducts(Model model) {
-        List<Product> products = productService.showProducts();
-        model.addAttribute("productList", products);
-        return "product";
+    private String showAll(Model model,
+                           @RequestParam(required = false, name = "min_cost") Double minCost,
+                           @RequestParam(required = false, name = "max_cost") Double maxCost
+    ){
+        model.addAttribute("products", productService.findAll(minCost, maxCost));
+        return "products";
+    }
+    @GetMapping("/test")
+    @ResponseBody
+    public Product getById(@RequestParam Long id){
+        return productService.findById(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteStudentById(@PathVariable Long id) {
+        productService.deleteBydId(id);
+        return "redirect:/products";
     }
 }
 

@@ -2,14 +2,12 @@ package ru.gb.spring.repo;
 
 import org.springframework.stereotype.Component;
 import ru.gb.spring.model.Product;
-
-
 import javax.annotation.PostConstruct;
 import java.util.*;
-import java.util.function.Predicate;
+
 
 @Component
-public class ProductRepository {
+public class ProductRepository implements ProductInterfaceRepo{
     private List<Product> products;
 
     @PostConstruct
@@ -57,5 +55,25 @@ public class ProductRepository {
 
     public void deleteById(Long id) {
         products.removeIf(s -> s.getId().equals(id));
+    }
+
+    @Override
+    public void createdProduct(Product product) {
+
+    }
+
+    @Override
+    public void readProduct(Long id) {
+
+    }
+
+    @Override
+    public void updateProduct(Product product) {
+
+    }
+
+    @Override
+    public void deletedProduct(Long id) {
+        products.removeIf(p -> p.getId().equals(id));
     }
 }

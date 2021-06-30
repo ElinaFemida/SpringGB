@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringGbApplication {
+public class TaskForSpringBootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringGbApplication.class, args);
+        SpringApplication.run(TaskForSpringBootApplication.class, args);
     }
 
 }
