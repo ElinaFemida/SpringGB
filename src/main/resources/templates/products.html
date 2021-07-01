@@ -13,23 +13,32 @@
 
 <div class="container">
     <h1>Фильтр</h1>
+    <form method="get" th:action="@{'/products'}">
+        <label>
+            <input class="form-control" th:value="${param.min_cost != null ? param.min_cost : ''}" type="number" placeholder="Минимальная стоимость" name="min_cost"/>
+        </label>
+        <label>
+            <input class="form-control" th:value="${param.max_cost != null ? param.max_cost : ''}" type="number" placeholder="Максимальная стоимость" name="max_cost"/>
+        </label>
+        <button class="btn btn-primary" type="submit">отсортировать</button>
+    </form>
     <h1>Список продуктов</h1>
     <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>Наименование</th>
-            <th>стоимость</th>
+            <th>Цена</th>
             <th>Действия</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="s : ${products}">
-            <td th:text="${s.id}"/>
-            <td th:text="${s.name}"/>
-            <td th:text="${s.cost}"/>
+        <tr th:each="p : ${products}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.title}"></td>
+            <td th:text="${p.cost}"></td>
             <td>
-                <a class="btn btn-danger" th:href="@{'/products/delete/' + ${s.id}}">Удалить</a>
+                <a class="btn btn-danger" th:href="@{'/products/delete/' + ${p.id}}">Удалить</a>
             </td>
         </tr>
         </tbody>
